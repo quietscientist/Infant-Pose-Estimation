@@ -32,6 +32,8 @@ except ImportError:
     import pickle
 
 import numpy as np
+np.bool = np.bool_
+
 
 from collections import namedtuple
 
