@@ -101,7 +101,7 @@ class L2Prior(nn.Module):
 
 class MaxMixturePrior(nn.Module):
 
-    def __init__(self, prior_folder='prior',
+    def __init__(self, prior_folder='syn_generation/prior',
                  num_gaussians=6, dtype=DEFAULT_DTYPE, epsilon=1e-16,
                  use_merged=True,
                  **kwargs):
@@ -120,7 +120,7 @@ class MaxMixturePrior(nn.Module):
         self.use_merged = use_merged
         gmm_fn = 'gmm_{:02d}.pkl'.format(num_gaussians)
 
-        full_gmm_fn = os.path.join(prior_folder, gmm_fn)
+        full_gmm_fn = os.path.join('/workspaces/Infant-Pose-Estimation/syn_generation/priors/', gmm_fn)
         if not os.path.exists(full_gmm_fn):
             print('The path to the mixture prior "{}"'.format(full_gmm_fn) +
                   ' does not exist, exiting!')
@@ -178,7 +178,7 @@ class MaxMixturePrior(nn.Module):
     def get_mean(self):
         ''' Returns the mean of the mixture '''
         mean_pose = torch.matmul(self.weights, self.means)
-        prior_filename = 'priors/smil_pose_prior.pkl'
+        prior_filename = 'syn_generation/priors/smil_pose_prior.pkl'
         prior = pickle.load(open(prior_filename, 'rb'), encoding='latin1')
 
         mean_pose = torch.tensor([prior.mean], dtype=DEFAULT_DTYPE)

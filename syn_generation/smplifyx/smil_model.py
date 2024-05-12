@@ -33,7 +33,14 @@ except ImportError:
 
 import numpy as np
 np.bool = np.bool_
-
+np.int = np.int32
+np.float = np.float32
+np.complex = np.complex128
+np.object = np.object_
+np.unicode = np.unicode_
+np.str = np.str_
+np.nan = np.nan
+np.inf = np.inf
 
 from collections import namedtuple
 
